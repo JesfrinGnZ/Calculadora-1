@@ -42,11 +42,12 @@ public class Suma {
         for (Double numeroActual : numeros) {
             acumulacion += numeroActual;
         }
-        String[] resultadoSeparado = String.valueOf(acumulacion).split(".");
-        if(resultadoSeparado[1].equals("0")){
-            return resultadoSeparado[0];
-        }else{
-            return String.valueOf(acumulacion);
-        }
+//        String[] resultadoSeparado = String.valueOf(acumulacion).split(".");
+        return String.valueOf(acumulacion);
+//        if(resultadoSeparado[1].equals("0")){
+//            return resultadoSeparado[0];
+//        }else{
+//            return String.valueOf(acumulacion);
+//        }
     }
 }
