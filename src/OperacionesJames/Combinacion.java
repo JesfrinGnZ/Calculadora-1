@@ -3,7 +3,7 @@ package OperacionesJames;
 
 /**
  *
- * @author james
+ * @author Michelle
  */
 public class Combinacion {
     
