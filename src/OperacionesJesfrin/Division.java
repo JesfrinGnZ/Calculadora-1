@@ -13,7 +13,7 @@ public class Division {
 
     private double dividendo;
     private double divisor;
-    private double cociente;
+    private Double cociente;
 
     public Division(double dividendo, double divisor) {
         this.dividendo = dividendo;
@@ -38,11 +38,11 @@ public class Division {
         this.divisor = divisor;
     }
 
-    public double getCociente() {
+    public Double getCociente() {
         return cociente;
     }
 
-    public void setCociente(double cociente) {
+    public void setCociente(Double cociente) {
         this.cociente = cociente;
     }
 

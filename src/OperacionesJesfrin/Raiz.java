@@ -13,7 +13,7 @@ public class Raiz {
     
     private double indice;
     private double radicando;
-    private double resultado;
+    private Double resultado;
     
     public Raiz(double indice, double radicando){
         this.indice=indice;
@@ -37,11 +37,11 @@ public class Raiz {
         this.radicando = radicando;
     }
 
-    public double getResultado() {
+    public Double getResultado() {
         return resultado;
     }
 
-    public void setResultado(double resultado) {
+    public void setResultado(Double resultado) {
         this.resultado = resultado;
     }
     

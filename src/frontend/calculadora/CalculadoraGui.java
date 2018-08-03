@@ -6,6 +6,11 @@
 package frontend.calculadora;
 
 import Manejadores.ManejadorDeCadenas;
+import OperacionesJesfrin.Division;
+import OperacionesJesfrin.Multiplicacion;
+import OperacionesJesfrin.Raiz;
+import OperacionesJesfrin.Residuo;
+import OperacionesJesfrin.Resta;
 import OperacionesJesfrin.Suma;
 import java.util.ArrayList;
 
@@ -243,6 +248,11 @@ public class CalculadoraGui extends javax.swing.JFrame {
         botones2Panel.add(restaButton);
 
         raizButton.setText("Raiz");
+        raizButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                raizButtonActionPerformed(evt);
+            }
+        });
         botones2Panel.add(raizButton);
 
         igualButton.setText("=");
@@ -308,13 +318,59 @@ public class CalculadoraGui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void igualButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_igualButtonActionPerformed
-        if(this.operacionesComboBox.getSelectedItem().equals("Suma")){
-            ArrayList<Double> numerosAOperar=ManejadorDeCadenas.separarNumeros(this.operacionesTextField.getText(), "\\+");
-            Suma nuevaSuma = new Suma(numerosAOperar);
-            this.resultadoTextField.setText(nuevaSuma.getResultado());
+        ArrayList<Double> numerosAOperarDecimales;
+        ArrayList<Integer> numerosAOperarEnteros;
+        //Operacion para suma
+        if (this.operacionesComboBox.getSelectedItem().equals("Suma")) {
+            numerosAOperarDecimales = ManejadorDeCadenas.separarNumerosDecimales(this.operacionesTextField.getText(), "\\+");
+            Suma nuevaSuma = new Suma(numerosAOperarDecimales);
+            this.resultadoTextField.setText(nuevaSuma.getResultado().toString());
+            //Operacion para resta
+        } else if (this.operacionesComboBox.getSelectedItem().equals("Resta")) {
+            numerosAOperarDecimales = ManejadorDeCadenas.separarNumerosDecimales(this.operacionesTextField.getText(), "\\-");
+            if (numerosAOperarDecimales.size() != 2) {
+                this.resultadoTextField.setText("Ha ingresado mas de dos numeros");
+            } else {
+                Resta nuevaResta = new Resta(numerosAOperarDecimales.get(0), numerosAOperarDecimales.get(1));
+                this.resultadoTextField.setText(nuevaResta.getDiferencia().toString());
+            }
+            //Operacion para multiplicacion    
+        } else if (this.operacionesComboBox.getSelectedItem().equals("Multiplicacion")) {
+            numerosAOperarDecimales = ManejadorDeCadenas.separarNumerosDecimales(this.operacionesTextField.getText(), "\\*");
+            Multiplicacion nuevaMultiplicacion = new Multiplicacion(numerosAOperarDecimales);
+            this.resultadoTextField.setText(nuevaMultiplicacion.getResultado().toString());
+        } //operacion para division
+        else if (this.operacionesComboBox.getSelectedItem().equals("Division")) {
+            numerosAOperarDecimales = ManejadorDeCadenas.separarNumerosDecimales(this.operacionesTextField.getText(), "\\/");
+            if (numerosAOperarDecimales.size() != 2) {
+                this.resultadoTextField.setText("Ha ingresado mas de dos numeros");
+            } else {
+                Division nuevaDivision = new Division(numerosAOperarDecimales.get(0), numerosAOperarDecimales.get(1));
+                this.resultadoTextField.setText(nuevaDivision.getCociente().toString());
+            }
+        } //operacion para residuo
+        else if (this.operacionesComboBox.getSelectedItem().equals("Residuo")) {
+            numerosAOperarEnteros = ManejadorDeCadenas.separarNumerosEnteros(this.operacionesTextField.getText(), "\\%");
+            if (numerosAOperarEnteros.size() != 2) {
+                this.resultadoTextField.setText("Ha ingresado mas de dos numeros");
+            } else {
+                Residuo nuevoResiduo = new Residuo(numerosAOperarEnteros.get(0), numerosAOperarEnteros.get(1));
+                this.resultadoTextField.setText(String.valueOf(nuevoResiduo.getResiduo()));
+            }
+        } //Operacion para raiz
+        else if (this.operacionesComboBox.getSelectedItem().equals("Raiz")) {
+            numerosAOperarDecimales = ManejadorDeCadenas.separarNumerosDecimales(this.operacionesTextField.getText(), "R");
+            if (numerosAOperarDecimales.size() != 2) {
+                this.resultadoTextField.setText("Ha ingresado mas de dos numeros");
+            } else {
+                Raiz nuevaRaiz = new Raiz(numerosAOperarDecimales.get(0), numerosAOperarDecimales.get(1));
+                this.resultadoTextField.setText(nuevaRaiz.getResultado().toString());
+            }
+
         }
     }//GEN-LAST:event_igualButtonActionPerformed
 
+    //Se da accion a los botones de numeros donde se pueden activar
     private void puntoDecimalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puntoDecimalButtonActionPerformed
         if (this.operacionesComboBox.getSelectedItem().equals("Suma")
                 || this.operacionesComboBox.getSelectedItem().equals("Resta")
@@ -366,6 +422,7 @@ public class CalculadoraGui extends javax.swing.JFrame {
         this.operacionesTextField.setText(this.operacionesTextField.getText() + "9");
     }//GEN-LAST:event_numero10ButtonActionPerformed
 
+    //Se da accion a los botones de las operaciones, se decide cuando podran ser usados
     private void operacionesTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_operacionesTextFieldKeyTyped
         Character car = evt.getKeyChar();
         if (operacionesComboBox.getSelectedItem().equals("Suma")) {
@@ -407,10 +464,10 @@ public class CalculadoraGui extends javax.swing.JFrame {
     }//GEN-LAST:event_sumaButtonActionPerformed
 
     private void restaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restaButtonActionPerformed
-        if (this.operacionesComboBox.getSelectedItem().equals("Resta") || 
-                this.operacionesComboBox.getSelectedItem().equals("Multiplicacion") ||
-                this.operacionesComboBox.getSelectedItem().equals("Division") ||
-                this.operacionesComboBox.getSelectedItem().equals("Residuo")) {
+        if (this.operacionesComboBox.getSelectedItem().equals("Resta")
+                || this.operacionesComboBox.getSelectedItem().equals("Multiplicacion")
+                || this.operacionesComboBox.getSelectedItem().equals("Division")
+                || this.operacionesComboBox.getSelectedItem().equals("Residuo")) {
             this.operacionesTextField.setText(this.operacionesTextField.getText() + "-");
         }
     }//GEN-LAST:event_restaButtonActionPerformed
@@ -430,8 +487,14 @@ public class CalculadoraGui extends javax.swing.JFrame {
     private void restoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restoButtonActionPerformed
         if (this.operacionesComboBox.getSelectedItem().equals("Residuo")) {
             this.operacionesTextField.setText(this.operacionesTextField.getText() + "%");
-        }        
+        }
     }//GEN-LAST:event_restoButtonActionPerformed
+
+    private void raizButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raizButtonActionPerformed
+        if (this.operacionesComboBox.getSelectedItem().equals("Raiz")) {
+            this.operacionesTextField.setText(this.operacionesTextField.getText() + "R");
+        }
+    }//GEN-LAST:event_raizButtonActionPerformed
 
     /**
      * @param args the command line arguments

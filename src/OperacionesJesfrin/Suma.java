@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Suma {
 
     private ArrayList<Double> numeros;
-    private String resultado;
+    private Double resultado;
 
     public Suma(ArrayList<Double> numeros) {
         this.numeros = numeros;
@@ -29,25 +29,20 @@ public class Suma {
         this.numeros = numeros;
     }
 
-    public String getResultado() {
+    public Double getResultado() {
         return resultado;
     }
 
-    public void setResultado(String resultado) {
+    public void setResultado(Double resultado) {
         this.resultado = resultado;
     }
 
-    public String calcularSuma() {
+    public Double calcularSuma() {
         double acumulacion = 0;
         for (Double numeroActual : numeros) {
             acumulacion += numeroActual;
         }
-//        String[] resultadoSeparado = String.valueOf(acumulacion).split(".");
-        return String.valueOf(acumulacion);
-//        if(resultadoSeparado[1].equals("0")){
-//            return resultadoSeparado[0];
-//        }else{
-//            return String.valueOf(acumulacion);
-//        }
+        return acumulacion;
+
     }
 }

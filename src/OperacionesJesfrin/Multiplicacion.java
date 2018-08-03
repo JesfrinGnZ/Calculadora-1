@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Multiplicacion {
     
      private ArrayList<Double> numeros;
-    private String resultado;
+    private Double resultado;
 
     public Multiplicacion(ArrayList<Double> numeros) {
         this.numeros = numeros;
@@ -29,25 +29,20 @@ public class Multiplicacion {
         this.numeros = numeros;
     }
 
-    public String getResultado() {
+    public Double getResultado() {
         return resultado;
     }
 
-    public void setResultado(String resultado) {
+    public void setResultado(Double resultado) {
         this.resultado = resultado;
     }
 
-    public String calcularMultiplicacion() {
-        double acumulacion = 0;
+    public Double calcularMultiplicacion() {
+        double acumulacion = 1;
         for (Double numeroActual : numeros) {
             acumulacion *= numeroActual;
         }
-        String[] resultadoSeparado = String.valueOf(acumulacion).split(".");
-        if(resultadoSeparado[1].equals("0")){
-            return resultadoSeparado[0];
-        }else{
-            return String.valueOf(acumulacion);
-        }
+        return acumulacion;
     }
 
     
