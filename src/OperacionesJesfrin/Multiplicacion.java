@@ -12,15 +12,18 @@ import java.util.ArrayList;
  * @author jesfrin
  */
 public class Multiplicacion {
-    
-     private ArrayList<Double> numeros;
+
+    //Atributos
+    private ArrayList<Double> numeros;
     private Double resultado;
 
+    //Constructor
     public Multiplicacion(ArrayList<Double> numeros) {
         this.numeros = numeros;
-        this.resultado=calcularMultiplicacion();
+        this.resultado = calcularMultiplicacion();
     }
 
+    //Getter and setter
     public ArrayList<Double> getNumeros() {
         return numeros;
     }
@@ -45,5 +48,4 @@ public class Multiplicacion {
         return acumulacion;
     }
 
-    
 }

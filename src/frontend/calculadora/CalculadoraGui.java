@@ -185,6 +185,11 @@ public class CalculadoraGui extends javax.swing.JFrame {
         botonesPanel.add(numero0Button);
 
         ansButton.setText("Ans");
+        ansButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ansButtonActionPerformed(evt);
+            }
+        });
         botonesPanel.add(ansButton);
 
         botones2Panel.setLayout(new java.awt.GridLayout(4, 3, 10, 10));
@@ -263,6 +268,11 @@ public class CalculadoraGui extends javax.swing.JFrame {
         });
 
         operacionesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Suma", "Resta", "Multiplicacion", "Division", "Residuo", "Raiz", "Potencia", "Factorial", "Permutacion", "Combinacion", "Bases numericas" }));
+        operacionesComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                operacionesComboBoxActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Escoja su operacion:");
 
@@ -495,6 +505,17 @@ public class CalculadoraGui extends javax.swing.JFrame {
             this.operacionesTextField.setText(this.operacionesTextField.getText() + "R");
         }
     }//GEN-LAST:event_raizButtonActionPerformed
+
+    private void ansButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ansButtonActionPerformed
+        if(!this.resultadoTextField.getText().isEmpty()){
+            this.operacionesTextField.setText(this.resultadoTextField.getText());
+            this.resultadoTextField.setText("");
+        }
+    }//GEN-LAST:event_ansButtonActionPerformed
+
+    private void operacionesComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_operacionesComboBoxActionPerformed
+        this.operacionesTextField.setText("");
+    }//GEN-LAST:event_operacionesComboBoxActionPerformed
 
     /**
      * @param args the command line arguments

@@ -11,10 +11,12 @@ package OperacionesJesfrin;
  */
 public class Division {
 
+    //Atributos
     private double dividendo;
     private double divisor;
     private Double cociente;
 
+    //Constructor
     public Division(double dividendo, double divisor) {
         this.dividendo = dividendo;
         this.divisor = divisor;
@@ -22,6 +24,7 @@ public class Division {
 
     }
 
+    //getters and setters
     public double getDividendo() {
         return dividendo;
     }

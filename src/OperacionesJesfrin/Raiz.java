@@ -11,16 +11,19 @@ package OperacionesJesfrin;
  */
 public class Raiz {
     
+    //Atributos
     private double indice;
     private double radicando;
     private Double resultado;
     
+    //Constructor
     public Raiz(double indice, double radicando){
         this.indice=indice;
         this.radicando=radicando;
         this.resultado=Math.pow(radicando, 1.0/indice);
     }
 
+    //getter and setter
     public double getIndice() {
         return indice;
     }

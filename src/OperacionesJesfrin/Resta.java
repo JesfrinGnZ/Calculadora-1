@@ -11,16 +11,19 @@ package OperacionesJesfrin;
  */
 public class Resta {
 
+    //Atributos
     private double minuendo;
     private double sustraendo;
     private Double diferencia;
 
+    //Constructor
     public Resta(double numero1, double numero2) {
         this.minuendo = numero1;
         this.sustraendo = numero2;
         this.diferencia = this.minuendo - this.sustraendo;
     }
 
+    //getter and setter
     public double getMinuendo() {
         return minuendo;
     }

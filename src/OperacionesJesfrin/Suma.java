@@ -13,14 +13,17 @@ import java.util.ArrayList;
  */
 public class Suma {
 
+    //Atributos
     private ArrayList<Double> numeros;
     private Double resultado;
 
+    //Constructor
     public Suma(ArrayList<Double> numeros) {
         this.numeros = numeros;
         this.resultado=calcularSuma();
     }
 
+    //Getter and setter
     public ArrayList<Double> getNumeros() {
         return numeros;
     }

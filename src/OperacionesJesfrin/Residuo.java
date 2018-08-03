@@ -11,16 +11,19 @@ package OperacionesJesfrin;
  */
 public class Residuo {
     
+    //Atributos
     private int dividendo;
     private int divisor;
     private int residuo;
     
+    //Constructor
     public Residuo(int dividendo, int divisor){
         this.dividendo=dividendo;
         this.divisor=this.divisor;
         this.residuo = dividendo%divisor;
     }
 
+    //Getter and setter
     public int getDividendo() {
         return dividendo;
     }
