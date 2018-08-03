@@ -64,7 +64,7 @@ public class Permutacion {
 
     
      */
-    public static Permutacion operacionPermutacion(int n, int r) {
+    public static Permutacion operacionPermutacion(double n, double r) {
 
         Permutacion perm = null;
 

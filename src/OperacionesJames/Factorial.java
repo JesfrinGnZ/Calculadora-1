@@ -32,7 +32,7 @@ public class Factorial {
         this.resultado = resultado;
     }
    
-   public static Factorial operacionFactorial(int numero){
+   public static Factorial operacionFactorial(double numero){
        Factorial fact = null;
        
        if(numero == 0){

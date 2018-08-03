@@ -61,7 +61,7 @@ public class Combinacion {
     */
     
     
-    public static Combinacion operacionCombinacion(int n, int r) {
+    public static Combinacion operacionCombinacion(double n, double r) {
 
         Combinacion comb = null;
 
