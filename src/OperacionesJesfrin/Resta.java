@@ -7,7 +7,7 @@ package OperacionesJesfrin;
 
 /**
  *
- * @author jenkins
+ * @author jesfrin
  */
 public class Resta {
 

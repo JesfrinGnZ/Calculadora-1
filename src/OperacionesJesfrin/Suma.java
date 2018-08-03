@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author jenkins
+ * @author jesfrin
  */
 public class Suma {
 
