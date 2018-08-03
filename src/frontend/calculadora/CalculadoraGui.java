@@ -13,6 +13,7 @@ import OperacionesJesfrin.Suma;
 import OperacionesJames.Factorial;
 import OperacionesJames.Permutacion;
 import OperacionesJames.Combinacion;
+import OperacionesJames.Potencia;
 
 import java.util.ArrayList;
 
@@ -28,6 +29,7 @@ public class CalculadoraGui extends javax.swing.JFrame {
     public CalculadoraGui() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setTitle("Calculadora-1");
     }
 
     @SuppressWarnings("unchecked")
@@ -87,6 +89,9 @@ public class CalculadoraGui extends javax.swing.JFrame {
 
         botonesPanel.setLayout(new java.awt.GridLayout(5, 3, 10, 10));
 
+        factorialButton.setBackground(new java.awt.Color(1, 1, 1));
+        factorialButton.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        factorialButton.setForeground(new java.awt.Color(255, 255, 254));
         factorialButton.setText("!");
         factorialButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,7 +100,10 @@ public class CalculadoraGui extends javax.swing.JFrame {
         });
         botonesPanel.add(factorialButton);
 
-        permutacionButton.setText("P");
+        permutacionButton.setBackground(new java.awt.Color(1, 1, 1));
+        permutacionButton.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        permutacionButton.setForeground(new java.awt.Color(254, 254, 254));
+        permutacionButton.setText("nPr");
         permutacionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 permutacionButtonActionPerformed(evt);
@@ -103,7 +111,10 @@ public class CalculadoraGui extends javax.swing.JFrame {
         });
         botonesPanel.add(permutacionButton);
 
-        combinacionButton.setText("C");
+        combinacionButton.setBackground(new java.awt.Color(1, 1, 1));
+        combinacionButton.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
+        combinacionButton.setForeground(new java.awt.Color(254, 254, 254));
+        combinacionButton.setText("nCr");
         combinacionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combinacionButtonActionPerformed(evt);
@@ -263,6 +274,11 @@ public class CalculadoraGui extends javax.swing.JFrame {
         botones2Panel.add(multiplicacionButton);
 
         potenciaButton.setText("a^n");
+        potenciaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                potenciaButtonActionPerformed(evt);
+            }
+        });
         botones2Panel.add(potenciaButton);
 
         sumaButton.setText("+");
@@ -454,6 +470,8 @@ public class CalculadoraGui extends javax.swing.JFrame {
                 }
 
             }
+            
+//Operacion Combinacion            
         } else if (this.operacionesComboBox.getSelectedItem().equals("Combinacion")) {
 
             boolean iniciaConNumero = ManejadorTerminacionEnNumero.inicioConNumero(operacionesTextField);
@@ -480,6 +498,23 @@ public class CalculadoraGui extends javax.swing.JFrame {
 
                 }
 
+            }
+        } else if (this.operacionesComboBox.getSelectedItem().equals("Potencia")) {
+            
+            boolean iniciaConNumero = ManejadorTerminacionEnNumero.inicioConNumero(operacionesTextField);
+            boolean terminacionEnNumero = ManejadorTerminacionEnNumero.terminacionEnNumero(operacionesTextField);
+
+            if (operacionesTextField.getText().contains("^") && iniciaConNumero == true && terminacionEnNumero == true) {
+                numerosAOperarEnteros = ManejadorDeCadenas.separarNumerosEnteros(this.operacionesTextField.getText(), "\\^");
+                
+                double base = numerosAOperarEnteros.get(0);
+                double potencia = numerosAOperarEnteros.get(1);
+                
+                Potencia poten = Potencia.operacionPotencia(base, potencia);
+                
+               this.resultadoTextField.setText("" + poten.getResultado());   
+            } else {
+                this.resultadoTextField.setText(" == ERROR ==" );
             }
         }
     }//GEN-LAST:event_igualButtonActionPerformed
@@ -578,6 +613,10 @@ public class CalculadoraGui extends javax.swing.JFrame {
             if ((car < '0' || car > '9') && (car < 'C' || car > 'C')) {
                 evt.consume();
             }
+        } else if (operacionesComboBox.getSelectedItem().equals("Potencia")) {
+            if ((car < '0' || car > '9') && (car < '^' || car > '^')) {
+                evt.consume();
+            }
         }
 
     }//GEN-LAST:event_operacionesTextFieldKeyTyped
@@ -654,6 +693,12 @@ public class CalculadoraGui extends javax.swing.JFrame {
             this.operacionesTextField.setText(this.operacionesTextField.getText() + "C");
         }
     }//GEN-LAST:event_combinacionButtonActionPerformed
+
+    private void potenciaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_potenciaButtonActionPerformed
+        if (this.operacionesComboBox.getSelectedItem().equals("Potencia")) {
+            this.operacionesTextField.setText(this.operacionesTextField.getText() + "^");
+        }
+    }//GEN-LAST:event_potenciaButtonActionPerformed
 
     /**
      * @param args the command line arguments

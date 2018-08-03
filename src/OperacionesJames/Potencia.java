@@ -7,13 +7,13 @@ package OperacionesJames;
 public class Potencia {
     
     private double base;
-    private int potencia;
+    private double potencia;
     private double resultado;
 
     public Potencia() {
     }
 
-    public Potencia(double base, int potencia, double resultado) {
+    public Potencia(double base, double potencia, double resultado) {
         this.base = base;
         this.potencia = potencia;
         this.resultado = resultado;
@@ -27,11 +27,11 @@ public class Potencia {
         this.base = base;
     }
 
-    public int getPotencia() {
+    public double getPotencia() {
         return potencia;
     }
 
-    public void setPotencia(int potencia) {
+    public void setPotencia(double potencia) {
         this.potencia = potencia;
     }
 
@@ -48,7 +48,7 @@ public class Potencia {
    
     
     
-    public static Potencia operacionPotencia(int base, int potencia){
+    public static Potencia operacionPotencia(double base, double potencia){
         Potencia poten = null;
         
         double resultado = Math.pow(base, potencia);
