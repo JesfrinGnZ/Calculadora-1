@@ -16,7 +16,6 @@ public class ManejadorDeCadenas {
     //Manejador para separar cadenas donde se incluyen numeros decimales
     public static ArrayList<Double> separarNumerosDecimales(String cadenaDeNumeros, String separador) {
         ArrayList<Double> numerosAOperar = new ArrayList<>();
-        System.out.println("cadena:" + cadenaDeNumeros);
         String[] numerosSeparados = cadenaDeNumeros.split(separador);
 
         for (String numeroIndividual : numerosSeparados) {
